@@ -1,8 +1,10 @@
 import React from "react";
-import AddTodo from "./addTodo";
+import TodoItem from "./todos";
 
 function ListTodos() {
-   return <div> <AddTodo/></div>
+   let todos = []
+
+   return <ul> {todos.map(todo => <TodoItem />)}</ul>
 };
 
 export default ListTodos

@@ -1,12 +1,11 @@
 import React from "react"
-function AddTodo() {
+function TodoItem(props) {
 
-    return <div>
-        <li> Todo 1
-        <button>Delete</button> 
+    return <li> {props.todo.titte}
+        <button>Delete</button>
         <button>Done</button>
-        </li>
-    </div>
+    </li>
+
 
 }
-export default AddTodo
+export default TodoItem
