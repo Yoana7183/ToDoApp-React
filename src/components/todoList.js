@@ -1,10 +1,16 @@
 import React from "react";
-import TodoItem from "./todos";
 
-function ListTodos() {
-   let todos = []
 
-   return <ul> {todos.map(todo => <TodoItem />)}</ul>
-};
+function ListTodos({todos}) {
+	return (
+		<ul className="todo-list-items">
+			{todos.map(todo=><li dataid={todo.id} key={todo.id}>
+				<span>{todo.title}</span>
+				<div className="removeTodo"><i className="far fa-trash-alt"></i></div>
+			</li>)}
+		</ul>
+	);
+}
+
 
 export default ListTodos
