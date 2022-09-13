@@ -7,11 +7,11 @@ function ListTodos({ todos }) {
 		<div>
 			<ul className="todo-list-items">
 				{todos.map(todo => <li dataid={todo.id} key={todo.id}>
-					<span>{todo.title}
-						{todo.id}
-						<button  id={todo.id} todo-title={todo.title} >Delete</button>
-						<button id={todo.id}>Done</button>
-					</span>
+					{todo.id} {todo.title}
+
+					<button id={todo.id} todo-title={todo.title} >Delete</button>
+					<button id={todo.id}>Done</button>
+
 				</li>)}
 			</ul>
 		</div>

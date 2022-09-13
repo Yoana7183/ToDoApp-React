@@ -28,14 +28,15 @@ class App extends React.Component {
 			})
 			.catch(err => console.warn(err));
 	}
-
-	addTodo = (title,id) => {
+   
+	addTodo = (title) => {
 
 		const newTodo = {
-			"id": id,
-			"title": title,
-			"completed": false,
+			id:this.state.todos.id,
+			title: title,
+			completed: false,
 		  }
+		  
 		  fetch(url, {
 			method: 'POST',
 			body: JSON.stringify(newTodo),
@@ -43,6 +44,7 @@ class App extends React.Component {
 			  'Content-type': 'application/json; charset=UTF-8'
 			}
 		  })
+		
 	  
 		  this.setState({
 			todos: [...this.state.todos, newTodo]

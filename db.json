@@ -4,7 +4,11 @@
       "id": 1,
       "title": "Learn HTML",
       "completed": false
+    },
+    {
+      "title": "",
+      "completed": false,
+      "id": 2
     }
-
   ]
 }
