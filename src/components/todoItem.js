@@ -1,11 +1,19 @@
 import React from "react"
-function TodoItem(props) {
 
-    return <li> {props.todo.titte}
+
+class TodoItem extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.props = props
+    }
+
+    render() {
+       
+        return (<div>{this.props.title}
         <button>Delete</button>
-        <button>Done</button>
-    </li>
-
-
+        <button>Done</button></div>);
+    }
 }
+
 export default TodoItem

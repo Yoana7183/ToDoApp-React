@@ -6,60 +6,71 @@ import AddTodo from './components/addTodo';
 import ListTodos from './components/todoList';
 
 
+const url = ' http://localhost:8000/todos'
 class App extends React.Component {
-  constructor(props){
+	constructor(props) {
 		super(props)
 		this.state = {
 			todos: [],
 		}
 	}
 
-	componentDidMount(){
-		// fetch initial todos
-		const url = ' http://localhost:8000/todos'
+	componentDidMount() {
+
 		fetch(url)
-			.then(r=>{
-				if(r.ok){
+			.then(r => {
+				if (r.ok) {
 					return r.json()
 				}
 			})
-			.then(data=> {
-				// todos = data;
-				this.setState({todos:data})
+			.then(data => {
+				this.setState({ todos: data })
 			})
-			.catch( err=>console.warn(err) );
+			.catch(err => console.warn(err));
 	}
 
-	addTodo=(title)=>{
-		console.log(`addtodo`);
+	addTodo = (title,id) => {
+
 		const newTodo = {
-			id:this.state.todos.length+1,
-			title: title,
-			completed: false,
+			"id": id,
+			"title": title,
+			"completed": false,
+		  }
+		  fetch(url, {
+			method: 'POST',
+			body: JSON.stringify(newTodo),
+			headers: {
+			  'Content-type': 'application/json; charset=UTF-8'
+			}
+		  })
+	  
+		  this.setState({
+			todos: [...this.state.todos, newTodo]
+	  
+		  })
+	  
+	  
+		  console.dir(`newTodo: ${newTodo}`);
 		}
 
-		this.setState({
-			todos:[...this.state.todos,newTodo]
-		})
 
-		// console.log(`newTodo: ${newTodo}`);
-	}
 
-	removeTodo=()=>{
+
+	removeTodo = () => {
 		//...
 	}
 
-	changeTodo=()=>{
+	changeTodo = () => {
 		//
 	}
 
 	render() {
 		return (
 			<div className="page">
-				<Header/>
+				<Header />
 				<main className="todo-app">
-				<AddTodo addTodo={this.addTodo}/>
-				<ListTodos todos={this.state.todos}/>
+					<AddTodo addTodo={this.addTodo} />
+					<ListTodos todos={this.state.todos} />
 				</main>
 			</div>
 		);
