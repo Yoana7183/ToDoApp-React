@@ -11,7 +11,7 @@ class App extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			todos: [],
+			todos: []
 		}
 	}
 
@@ -28,41 +28,43 @@ class App extends React.Component {
 			})
 			.catch(err => console.warn(err));
 	}
-   
+
 	addTodo = (title) => {
 
 		const newTodo = {
-			id:this.state.todos.id,
+			id:this.state.todos.length+1,
 			title: title,
 			completed: false,
-		  }
-		  
-		  fetch(url, {
+		}
+
+		fetch(url, {
 			method: 'POST',
 			body: JSON.stringify(newTodo),
 			headers: {
-			  'Content-type': 'application/json; charset=UTF-8'
+				'Content-type': 'application/json; charset=UTF-8'
 			}
-		  })
-		
-	  
-		  this.setState({
+		})
+
+
+		this.setState({
 			todos: [...this.state.todos, newTodo]
-	  
-		  })
-	  
-	  
-		  console.dir(`newTodo: ${newTodo}`);
-		}
+
+		})
 
 
-
-
-	removeTodo = () => {
-		//...
+		console.dir(`newTodo: ${newTodo}`);
 	}
 
-	changeTodo = () => {
+
+
+
+	deleteTodo = (e) => {
+		
+		var target = e.currentTarget;
+		console.log(target)
+	}
+
+	toggleTodo = () => {
 		//
 	}
 
@@ -78,4 +80,5 @@ class App extends React.Component {
 		);
 	}
 }
+
 export default App;

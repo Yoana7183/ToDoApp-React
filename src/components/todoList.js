@@ -4,19 +4,16 @@ import React from "react";
 
 function ListTodos({ todos }) {
 	return (
-		<div>
-			<ul className="todo-list-items">
-				{todos.map(todo => <li dataid={todo.id} key={todo.id}>
-					{todo.id} {todo.title}
-
-					<button id={todo.id} todo-title={todo.title} >Delete</button>
-					<button id={todo.id}>Done</button>
-
-				</li>)}
-			</ul>
-		</div>
+		<ul className="todo-list-items">
+			{todos.map(todo => 
+			<li dataid={todo.id} key={todo.id}>
+				<span>{todo.title}</span>
+				<br />
+				<button onClick={(e) => { console.log(e.currentTarget.value) }}>Delete</button>
+				<button>Done</button>
+			</li>)}
+		</ul>
 	);
 }
-
 
 export default ListTodos
