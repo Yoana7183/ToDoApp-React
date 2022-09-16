@@ -2,27 +2,17 @@
   "todos": [
     {
       "id": 1,
-      "title": "Learn HTML",
+      "title": "Dinner",
       "completed": false
     },
     {
       "id": 2,
-      "title": "s",
+      "title": "Learn HTML",
       "completed": false
     },
     {
       "id": 3,
-      "title": "ss",
-      "completed": false
-    },
-    {
-      "id": 4,
-      "title": "x",
-      "completed": false
-    },
-    {
-      "id": 5,
-      "title": "d",
+      "title": "Learn JS",
       "completed": false
     }
   ]

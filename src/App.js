@@ -32,7 +32,7 @@ class App extends React.Component {
 	addTodo = (title) => {
 
 		const newTodo = {
-			id:this.state.todos.length+1,
+			id: this.state.todos.length + 1,
 			title: title,
 			completed: false,
 		}
@@ -45,10 +45,8 @@ class App extends React.Component {
 			}
 		})
 
-
 		this.setState({
 			todos: [...this.state.todos, newTodo]
-
 		})
 
 
@@ -58,14 +56,77 @@ class App extends React.Component {
 
 
 
-	deleteTodo = (e) => {
-		
-		var target = e.currentTarget;
-		console.log(target)
+	deleteTodo = (todo) => {
+
+		var deleteURL = url + '/' + todo.id;
+
+		fetch(deleteURL, {
+			method: 'DELETE',
+			headers: {
+				'Content-type': 'application/json'
+			},
+		})
+			.then(res => {
+				if (res.ok) {
+					console.log('delete request successful')
+
+					var index = this.state.todos.indexOf(todo);
+					this.state.todos.splice(index, 1);
+
+					this.setState({
+						todos: [...this.state.todos]
+					})
+				}
+				else { console.log('unsuccessful'); }
+				return res
+			})
 	}
 
-	toggleTodo = () => {
-		//
+
+	completeTodo = (todo) => {
+
+		var completeTodoURL = url + '/' + todo.id;
+
+		todo.completed = true;
+
+		fetch(completeTodoURL, {
+			method: 'PUT',
+			body: JSON.stringify(todo),
+			headers: { 'Content-Type': 'application/json' },
+		})
+			.then(res => {
+				if (res.ok) {
+					console.log('Successful Update JSON DB FALSE to TRUE');
+					this.setState({
+						todos: [...this.state.todos]
+					})
+				}
+				else { console.log('Error! Information wasn\'t updated'); }
+				return res
+			})
+	}
+
+	undoneTodo = (todo) => {
+
+		var completeTodoURL = url + '/' + todo.id;
+
+		todo.completed = false;
+
+		fetch(completeTodoURL, {
+			method: 'PUT',
+			body: JSON.stringify(todo),
+			headers: { 'Content-Type': 'application/json' },
+		})
+			.then(res => {
+				if (res.ok) {
+					console.log('Successful Update JSON DB TRUE to FALSE');
+					this.setState({
+						todos: [...this.state.todos]
+					})
+				}
+				else { console.log('Error! Information wasn\'t updated'); }
+				return res
+			})
 	}
 
 	render() {
@@ -73,8 +134,11 @@ class App extends React.Component {
 			<div className="page">
 				<Header />
 				<main className="todo-app">
+
 					<AddTodo addTodo={this.addTodo} />
-					<ListTodos todos={this.state.todos} />
+					<ListTodos todosFromProps={[...this.state.todos]} deleteTodo={this.deleteTodo} completeTodo={this.completeTodo} undoneTodo={this.undoneTodo} />
+					
+
 				</main>
 			</div>
 		);

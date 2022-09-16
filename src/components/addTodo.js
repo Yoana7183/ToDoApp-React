@@ -15,8 +15,9 @@ class AddTodo extends React.Component {
 
     render() {
         return (
-            <div className="todo-add">
+            <div className="todo-add-div">
                 <input type="text"
+                className="todo-add"
                     autoFocus
                     placeholder="add new todo ..."
                     onChange={(e) => { this.setState({ value: e.target.value }) }} />
