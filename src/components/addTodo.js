@@ -8,11 +8,14 @@ class AddTodo extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: "",
+            value: ""
 
         }
     }
-
+clickHandler=(e)=>{
+    this.props.addTodo(this.state.value)
+    this.setState({value: ""})
+}
     render() {
         return (
             <div className="todo-add-div">
@@ -20,11 +23,12 @@ class AddTodo extends React.Component {
 
                     className="todo-add"
                     autoFocus
-                    placeholder="add new todo ..."
+                    placeholder="Add new todo ..."
+                    value={this.state.value}
                     onChange={(e) => { this.setState({ value: e.target.value }) }} />
                 <button
                     className="todo-add-btn"
-                    onClick={(e) => { this.props.addTodo(this.state.value) }}
+                    onClick={this.clickHandler}
                     type="button">Add</button>
             </div>
         );

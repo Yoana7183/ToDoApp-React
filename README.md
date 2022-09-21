@@ -69,6 +69,33 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-----------------------------------------------------------------------------
-To open JSON-SERVER in another terminal use this command: 
+=============================================================================
+Steps to start the Todo App:
+
+1. Install node_modules :
+
+More information and examples : https://github.com/facebook/create-react-app
+
+npx create-react-app my-app
+cd my-app
+npm start
+
+2. Install Json-server 
+
+More information and examples : https://www.npmjs.com/package/json-server
+
+npm install -g json-server
+=============================================================================
+
+After installation open two terminals and write theese commands:
+(copy-paste them)
+
+1. To start JSON-SERVER in another terminal use this command: 
+
 json-server --watch db.json --port 8000
+
+2. To start react server in another terminal use this command:
+
+npm start
+
+=============================================================================

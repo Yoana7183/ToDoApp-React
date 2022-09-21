@@ -4,6 +4,7 @@ import React from 'react';
 import Header from './components/header';
 import AddTodo from './components/addTodo';
 import ListTodos from './components/todoList';
+import TodoCounter from './components/todoCounter';
 
 
 const url = ' http://localhost:8000/todos'
@@ -32,7 +33,7 @@ class App extends React.Component {
 	addTodo = (title) => {
 
 		const newTodo = {
-			id: this.state.todos.length + 1,
+
 			title: title,
 			completed: false,
 		}
@@ -44,13 +45,20 @@ class App extends React.Component {
 				'Content-type': 'application/json; charset=UTF-8'
 			}
 		})
+			.then(resp => {
+				if (resp.ok) {
+					return resp.json()
+				}
+			}
+			)
+			.then(todo => {
+				this.setState({
+					todos: [...this.state.todos, todo]
+				})
 
-		this.setState({
-			todos: [...this.state.todos, newTodo]
-		})
 
-
-		console.dir(`newTodo: ${newTodo}`);
+			})
+			.catch(err => console.warn(err));
 	}
 
 
@@ -68,7 +76,6 @@ class App extends React.Component {
 		})
 			.then(res => {
 				if (res.ok) {
-					console.log('delete request successful')
 
 					var index = this.state.todos.indexOf(todo);
 					this.state.todos.splice(index, 1);
@@ -77,9 +84,10 @@ class App extends React.Component {
 						todos: [...this.state.todos]
 					})
 				}
-				else { console.log('unsuccessful'); }
+
 				return res
 			})
+			.catch(err => console.warn(err));
 	}
 
 
@@ -96,14 +104,15 @@ class App extends React.Component {
 		})
 			.then(res => {
 				if (res.ok) {
-					console.log('Successful Update JSON DB FALSE to TRUE');
+
 					this.setState({
 						todos: [...this.state.todos]
 					})
 				}
-				else { console.log('Error! Information wasn\'t updated'); }
-				return res
+				else { return res }
+
 			})
+			.catch(err => console.warn(err));
 	}
 
 	undoneTodo = (todo) => {
@@ -119,14 +128,14 @@ class App extends React.Component {
 		})
 			.then(res => {
 				if (res.ok) {
-					console.log('Successful Update JSON DB TRUE to FALSE');
+
 					this.setState({
 						todos: [...this.state.todos]
 					})
 				}
-				else { console.log('Error! Information wasn\'t updated'); }
-				return res
+				else { return res }
 			})
+			.catch(err => console.warn(err));
 	}
 
 	render() {
@@ -134,10 +143,12 @@ class App extends React.Component {
 			<div className="page">
 				<Header />
 				<main className="todo-app">
-
 					<AddTodo addTodo={this.addTodo} />
-					<ListTodos todosFromProps={[...this.state.todos]} deleteTodo={this.deleteTodo} completeTodo={this.completeTodo} undoneTodo={this.undoneTodo} />
-					
+					<ListTodos todosFromProps={[...this.state.todos]} 
+					deleteTodo={this.deleteTodo} 
+					completeTodo={this.completeTodo} 
+					undoneTodo={this.undoneTodo} />
+					<TodoCounter todos={this.state.todos} />
 
 				</main>
 			</div>

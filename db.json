@@ -2,18 +2,23 @@
   "todos": [
     {
       "id": 1,
-      "title": "Dinner",
-      "completed": false
+      "title": "Learn HTML",
+      "completed": true
     },
     {
       "id": 2,
-      "title": "Learn HTML",
-      "completed": false
+      "title": "Learn CSS",
+      "completed": true
     },
     {
       "id": 3,
-      "title": "Learn JS",
+      "title": "Learn Java Script",
       "completed": false
+    },
+    {
+      "title": "Learn React JS",
+      "completed": false,
+      "id": 4
     }
   ]
 }

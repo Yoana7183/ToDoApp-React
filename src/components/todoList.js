@@ -15,15 +15,15 @@ class ListTodos extends React.Component {
 
 
 		return (
-			<ul className="todo-list-items">
+			<ol className="todo-list-items">
 				{
 					this.props.todosFromProps.map(todo => {
 
 						if (!todo.completed) {
 
 							return <li className="todoTitle" key={todo.id.toString()}>
-								<div id="title"> {todo.title}</div>
-								<br />
+								<span id="title">{todo.title}</span>
+						
 								<button className="deleteBtn" id={todo.id} onClick={() => { this.props.deleteTodo(todo) }}>Delete</button>
 								<button id={todo.id} className="completeBtn" onClick={() => { this.props.completeTodo(todo) }}>Done</button>
 							</li>
@@ -31,8 +31,8 @@ class ListTodos extends React.Component {
 						} else {
 
 							return <li className="todoTitle"id="title" key={todo.id.toString()}>
-								<div className="done"id="title" >{todo.title}</div>
-								<br />
+								<span className="done"id="title" >{todo.title}</span>
+					
 								<button id={todo.id} className="deleteBtn" onClick={() => { this.props.deleteTodo(todo) }}>Delete</button>
 								<button id={todo.id}  className="undoneBtn" onClick={() => { this.props.undoneTodo(todo) }}>Undone</button>
 							</li>
@@ -42,7 +42,7 @@ class ListTodos extends React.Component {
 					})
 
 				}
-			</ul>
+			</ol>
 		);
 	}
 }
