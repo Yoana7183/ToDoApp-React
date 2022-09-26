@@ -1,4 +1,5 @@
-![Screenshot](Screenshot_React App.png)
+
+![Screenshot_React App](https://user-images.githubusercontent.com/100232582/192273390-2b95e31b-7598-4037-b425-dc7bbde182be.png)
 
 
 # Getting Started with Create React App
